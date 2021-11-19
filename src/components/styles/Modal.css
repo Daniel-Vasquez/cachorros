@@ -1,0 +1,50 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.Modal__container {
+  position: relative;
+  bottom: 0;
+  padding: 40px;
+  width: 320px;
+  border-radius: 30px;
+  background-color: #b6ebd7;
+  box-shadow: 9px 9px 1px 0px black;
+  text-align: center;
+}
+
+.DetailModal-text {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.DetailModal-img {
+  width: 220px;
+  height: 320px;
+  object-fit: cover;
+}
+
+.DetailModal-btnCancel, .DetailModal-btnGo {
+  padding: 5px 8px;
+  margin: 10px 5px 0;
+  background-color: white;
+  border-color: #00000047;
+  border-radius: 5px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .4s;
+}
+
+.DetailModal-btnCancel:hover, .DetailModal-btnGo:hover {
+  background-color: transparent;
+  border-color: black;
+}

@@ -1,0 +1,93 @@
+function hi(p) {
+  console.log("Hola " + p.name)
+}
+
+let dani = {
+  fullname: "Peluches"
+}
+
+const daniNombre = dani.fullname //Sería como props.fullname
+
+hi({name: daniNombre})
+----------------------PROPS--------------
+class BadgeDetailsContainer extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
+  handleOpenModal = (e) => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  handleCloseModal = (e) => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  render() {
+     return (
+      <BadgeDetails
+        onOpenModal={this.handleOpenModal}
+        onCloseModal={this.handleCloseModal}
+        modalIsOpen={this.state.modalIsOpen}
+        onDeleteBadge={this.handleDeleteBadge}
+        badge={this.state.data}
+      />
+    );
+  }
+}
+
+En el componente BadgeDetails:
+
+*Desustruturado.
+function BadgeDetails({badge, onCloseModal, modalIsOpen, onOpenModal, onDeleteBadge}) {
+  const infoBadge = badge;
+  .
+  <h1>
+    {infoBadge.firstName} {infoBadge.lastName}
+  </h1>
+  .
+
+  return(
+    . 
+    .
+    <div>
+      <button onClick={onOpenModal} className="btn btn-danger">
+        Eliminar
+      </button>
+      <DeleteBadgeModal
+        isOpen={modalIsOpen}
+        onClose={onCloseModal}
+        onDeleteBadge={onDeleteBadge}
+      />
+    </div>
+
+  )
+}
+
+*SIN Desustruturación.
+function BadgeDetails(props) {
+  const infoBadge = props.badge;
+  .
+  <h1>
+    {infoBadge.firstName} {infoBadge.lastName}
+  </h1>
+  .
+
+  return(
+    . 
+    .
+    <div>
+      <button onClick={props.onOpenModal} className="btn btn-danger">
+        Eliminar
+      </button>
+      <DeleteBadgeModal
+        isOpen={props.modalIsOpen}
+        onClose={props.onCloseModal}
+        onDeleteBadge={props.onDeleteBadge}
+      />
+    </div>
+
+  )
+}

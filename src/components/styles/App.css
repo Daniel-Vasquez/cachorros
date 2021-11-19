@@ -1,0 +1,107 @@
+.container {
+  position: relative;
+  width: 375px;
+  /* height: 812px; */
+  padding: 80px 0;
+  border-radius: 30px;
+  background: #ffffff;
+  border: 1px solid red;
+}
+
+.container-header {
+  width: 100%;
+  height: 204px;
+  background: #cf542b;
+  opacity: 0.9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-header__text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 5px;
+}
+
+.container-header__btn {
+  width: 245px;
+  height: 39px;
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin-top: 30px;
+}
+
+.breeds-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 20px;
+  color: #000000;
+  opacity: 0.3;
+  margin: 10px;
+}
+
+.breeds-container {
+  display: flex;
+  width: 100%;
+  height: 332px;
+  background: #f9f9f9;
+  overflow-x: scroll;
+}
+
+.breeds-container__dog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+  /*border: 1px solid red;*/
+}
+
+.breeds-container__text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+.breeds-container__img {
+  display: block;
+  height: 234px;
+  width: 193px;
+  object-fit: cover;
+}
+
+.breeds-container__btn {
+  width: 136px;
+  height: 27px;
+  background: #cf542b;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 15px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-top: 5px;
+  cursor: pointer;
+}

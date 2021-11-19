@@ -1,0 +1,10 @@
+.LoadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+}
+
+.LoadingContainer h1 {
+  color: cyan;
+}
