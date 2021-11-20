@@ -4,6 +4,21 @@ import DetailsModal from "./components/DetailsModal";
 import Loading from './components/Loading'
 import "./components/styles/App.css";
 
+const parseDogURL = (url) => {
+  const [image, breed] = url.split('/').reverse()
+  const [id] = image.split('.') //Ahora
+
+  return { //Ahora
+    image: url,
+    id,
+    breed
+  }
+  // return {raza: url_api[3], id: url_api[5].split('.')[0], url} Antes
+}
+
+console.log(parseDogURL("https://images.dog.ceo/breeds/hound-afghan/n02088094_1128.jpg"))
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,22 +41,15 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("https://dog.ceo/api/breed/hound/images/random/30")
+    fetch("https://dog.ceo/api/breed/hound/images/random/20")
       .then((res) => res.json())
-      .then((json) => this.setState({ images: json.message }))
+      .then((json) => this.setState({ images: json.message.map(parseDogURL) }))
       .finally(() => this.setState({ loading: false }));
-  }
-
-  urlApi = (url) => {
-    const url_api = url.split('/')
-    console.log(url_api)
-    return url_api
   }
 
 
   render() {
     const { loading, images } = this.state;
-    this.urlApi("https://dog.ceo/api/breed/hound/images/random/30")
 
     return (
       <div className="container">
@@ -58,9 +66,9 @@ class App extends React.Component {
           <p className="breeds-text">Razas Disponibles</p>
           <div className="breeds-container">
             {loading === true && <Loading/>}
-            {<Loading/> && images.map((image, index) => (
-                <div className="breeds-container__dog" key={image}>
-                  <p className="breeds-container__text">Raza no disponible {index + 1}</p>
+            {<Loading/> && images.map(({ id, breed, image }) => (
+                <div className="breeds-container__dog" key={id}>
+                  <p className="breeds-container__text">{breed.toUpperCase()}</p>
                   <img
                     onClick= {() => this.handleOpenModal(image)}
                     className="breeds-container__img"
