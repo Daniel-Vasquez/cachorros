@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 375px;
+  width: 1000px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .LoadingContainer h1 {
