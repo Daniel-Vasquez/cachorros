@@ -2,6 +2,7 @@ import React from "react";
 //import { Link } from 'react-router-dom'
 import DetailsModal from "./components/DetailsModal";
 import Loading from "./components/Loading";
+import Error from "./components/Error";
 import "./components/styles/App.css";
 
 const parseDogURL = (url) => {
@@ -23,6 +24,7 @@ class App extends React.Component {
 
     this.state = {
       loading: true,
+      error: null,
       selectecImage: null,
       images: [],
       modalIsOpen: false,
@@ -39,11 +41,11 @@ class App extends React.Component {
   };
 
   getbreeds = (breed) => {
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: null });
     fetch(`https://dog.ceo/api/breed/${breed}/images/random/10`)
       .then((res) => res.json())
       .then((json) => this.setState({ images: json.message.map(parseDogURL) }))
-      .finally(() => this.setState({ loading: false }));
+      .finally((error) => this.setState({ loading: false, error: error }));
   };
 
   componentDidMount() {
@@ -54,7 +56,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, images, allBreeds } = this.state;
+    const { loading, images, allBreeds, error } = this.state;
 
     return (
       <div className="container">
@@ -68,10 +70,19 @@ class App extends React.Component {
           </button>
         </main>
         <section className="selectBreed">
-        <p className="breeds-text">Razas Disponibles</p>
-          <select className='selectBreed-select' name="select" id="" onChange={(e) => this.getbreeds(e.target.value)}>
+          <p className="breeds-text">Razas Disponibles</p>
+          <select
+            className="selectBreed-select"
+            name="select"
+            id=""
+            onChange={(e) => this.getbreeds(e.target.value)}
+          >
             {allBreeds.map((breed, index) => (
-              <option className='selectBreed-select__option' value={breed} key={index}>
+              <option
+                className="selectBreed-select__option"
+                value={breed}
+                key={index}
+              >
                 {breed}
               </option>
             ))}
@@ -79,28 +90,26 @@ class App extends React.Component {
         </section>
         <section className="breeds">
           <div className="breeds-container">
-            {loading === true && <Loading />}
-            {<Loading /> &&
-              images.map(({ id, breed, image }) => (
-                <div className="breeds-container__dog" key={id}>
-                  <p className="breeds-container__text">
-                    {breed.toUpperCase()}
-                  </p>
-                  <img
-                    onClick={() => this.handleOpenModal(image)}
-                    className="breeds-container__img"
-                    src={image}
-                    loading="lazy"
-                    alt=""
-                  />
-                  <button
-                    onClick={() => this.handleOpenModal(image)}
-                    className="breeds-container__btn"
-                  >
-                    Conócelo más
-                  </button>
-                </div>
-              ))}
+            {images.map(({ id, breed, image }) => (
+              <div className="breeds-container__dog" key={id}>
+                <p className="breeds-container__text">{breed.toUpperCase()}</p>
+                <img
+                  onClick={() => this.handleOpenModal(image)}
+                  className="breeds-container__img"
+                  src={image}
+                  loading="lazy"
+                  alt=""
+                />
+                <button
+                  onClick={() => this.handleOpenModal(image)}
+                  className="breeds-container__btn"
+                >
+                  Conócelo más
+                </button>
+              </div>
+            ))}
+            {loading && <Loading />}
+            {error && <Error error={error}/>}
           </div>
         </section>
         <DetailsModal

@@ -1,0 +1,13 @@
+.pageError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.pageError h1 {
+  color: red;
+}
