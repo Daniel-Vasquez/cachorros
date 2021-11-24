@@ -49,3 +49,23 @@
   background-color: transparent;
   border-color: black;
 }
+
+@media screen and (max-width: 400px) {
+  .Modal__container {
+    width: 280px;
+    height: 400px;
+    padding: 20px;
+  }
+  
+  .DetailModal {
+    height: 90%;
+  }
+
+  .DetailModal-text {
+    font-size: 20px;
+  }
+
+  .DetailModal-img {
+    height: 80%;
+  }
+}

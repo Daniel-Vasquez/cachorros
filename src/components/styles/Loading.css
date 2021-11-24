@@ -2,7 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  max-width: 1000px;
+  min-width: 320px;
+  min-height: 300px;
   position: absolute;
   top: 0;
   bottom: 0;
