@@ -1,7 +1,6 @@
 .container {
   position: relative;
   width: 1000px;
-  padding: 80px 0;
   border-radius: 30px;
   background: #ffffff;
   margin: 0 auto;
@@ -20,7 +19,6 @@
 }
 
 .container-header__text {
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
@@ -43,10 +41,10 @@
   letter-spacing: -0.02em;
   color: #000000;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .breeds-text {
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 17px;
@@ -73,13 +71,13 @@
 }
 
 .breeds-container__text {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 15px;
   letter-spacing: -0.03em;
   color: #000000;
+  margin: 10px;
 }
 
 .breeds-container__img {
@@ -95,7 +93,6 @@
   height: 27px;
   background: #cf542b;
   border: none;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -114,8 +111,7 @@
 }
 
 .selectBreed-select {
-  width: 200px;
-  padding: 7px 15px;
+  padding: 5px;
   border-radius: 7px;
   border: 1px solid #d9dadb;
   outline: none;
@@ -124,6 +120,7 @@
   cursor: pointer;
   font-size: 16px;
   transition: all .3s;
+  text-align: center;
 }
 
 .selectBreed-select:focus {

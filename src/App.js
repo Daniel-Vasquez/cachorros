@@ -1,5 +1,4 @@
 import React from "react";
-//import { Link } from 'react-router-dom'
 import DetailsModal from "./components/DetailsModal";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
@@ -17,6 +16,10 @@ const parseDogURL = (url) => {
   };
   // return {raza: url_api[3], id: url_api[5].split('.')[0], url} Antes
 };
+
+const uppercaseFirstLetter = (word) => {
+  return word[0].toUpperCase() + word.slice(1)
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +54,7 @@ class App extends React.Component {
   componentDidMount() {
     fetch("https://dog.ceo/api/breeds/list/all")
       .then((res) => res.json())
-      .then((json) => this.setState({ allBreeds: Object.keys(json.message) }));
+      .then((json) => this.setState({ allBreeds: Object.keys(json.message)}));
     this.getbreeds("affenpinscher");
   }
 
@@ -83,16 +86,16 @@ class App extends React.Component {
                 value={breed}
                 key={index}
               >
-                {breed}
+                {uppercaseFirstLetter(breed)}
               </option>
             ))}
           </select>
         </section>
         <section className="breeds">
           <div className="breeds-container">
-            {images.map(({ id, breed, image }) => (
+            {!loading && images.map(({ id, breed, image }) => (
               <div className="breeds-container__dog" key={id}>
-                <p className="breeds-container__text">{breed.toUpperCase()}</p>
+                <p className="breeds-container__text">{uppercaseFirstLetter(breed)}</p>
                 <img
                   onClick={() => this.handleOpenModal(image)}
                   className="breeds-container__img"
