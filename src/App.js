@@ -32,15 +32,12 @@ class App extends React.Component {
       selectecImage: null,
       images: [],
       modalIsOpen: false,
-      randomNumber: null,
       allBreeds: [],
     };
   }
 
   getRandomArbitrary = (min, max) => {
-    const randomNumber = Math.ceil(Math.random() * (max - min) + min);
-    this.setState({randomNumber})
-    return randomNumber
+    return Math.ceil(Math.random() * (max - min) + min);
   }
 
   handleOpenModal = (selectecImage) => {
@@ -67,8 +64,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, images, allBreeds, error, randomNumber } = this.state;
-    console.log(images)
+    const { loading, images, allBreeds, error } = this.state;
     
     return (
       <div className="container">
@@ -101,8 +97,7 @@ class App extends React.Component {
           </select>
         </section>
         <section className="breeds">
-          {images.length < 10 && <p className="breeds-count"> Número de resultados: {images.length}</p>}
-          {images.length > 10 && <p className="breeds-count">Número de resultados: {randomNumber}</p>}
+          <p className="breeds-count"> Número de resultados: {images.length}</p>
           <div className="breeds-container">
             {!loading && images.map(({ id, breed, image }) => (
               <div className="breeds-container__dog" key={id}>
@@ -112,7 +107,7 @@ class App extends React.Component {
                   className="breeds-container__img"
                   src={image}
                   loading="lazy"
-                  alt=""
+                  alt={image}
                 />
                 <button
                   onClick={() => this.handleOpenModal(image)}
