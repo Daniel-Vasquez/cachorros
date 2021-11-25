@@ -54,6 +54,14 @@
   margin: 10px;
 }
 
+.breeds-count {
+  margin: 10px 0;
+  font-weight: 900;
+  opacity: .7;
+  text-align: center;
+  font-size: 14px;
+}
+
 .breeds-container {
   display: flex;
   flex-wrap: wrap;
@@ -70,7 +78,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 10px;
+  margin: 0 5px;
 }
 
 .breeds-container__text {
@@ -89,6 +97,8 @@
   width: 193px;
   object-fit: cover;
   cursor: pointer;
+  border: 1px solid #c7c7c7;
+  border-radius: 10px;
 }
 
 .breeds-container__btn {
@@ -149,6 +159,12 @@
   }
 }
 
+@media screen and (max-width: 450px) {
+  .breeds-container__img {
+    width: 300px;
+    height: 350px;
+  }
+}
 
 @media screen and (max-width: 320px) {
   .container {

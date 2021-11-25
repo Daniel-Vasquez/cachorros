@@ -21,6 +21,7 @@ const uppercaseFirstLetter = (word) => {
   return word[0].toUpperCase() + word.slice(1)
 }
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,8 +32,15 @@ class App extends React.Component {
       selectecImage: null,
       images: [],
       modalIsOpen: false,
+      randomNumber: null,
       allBreeds: [],
     };
+  }
+
+  getRandomArbitrary = (min, max) => {
+    const randomNumber = Math.ceil(Math.random() * (max - min) + min);
+    this.setState({randomNumber})
+    return randomNumber
   }
 
   handleOpenModal = (selectecImage) => {
@@ -45,22 +53,23 @@ class App extends React.Component {
 
   getbreeds = (breed) => {
     this.setState({ loading: true, error: null });
-    fetch(`https://dog.ceo/api/breed/${breed}/images/random/10`)
-      .then((res) => res.json())
-      .then((json) => this.setState({ images: json.message.map(parseDogURL) }))
-      .finally((error) => this.setState({ loading: false, error: error }));
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random/${this.getRandomArbitrary(10, 25)}`)
+    .then((res) => res.json())
+    .then((json) => this.setState({ images: json.message.map(parseDogURL) }))
+    .finally((error) => this.setState({ loading: false, error: error }));
   };
-
+  
   componentDidMount() {
     fetch("https://dog.ceo/api/breeds/list/all")
-      .then((res) => res.json())
-      .then((json) => this.setState({ allBreeds: Object.keys(json.message)}));
+    .then((res) => res.json())
+    .then((json) => this.setState({ allBreeds: Object.keys(json.message)}));
     this.getbreeds("affenpinscher");
   }
 
   render() {
-    const { loading, images, allBreeds, error } = this.state;
-
+    const { loading, images, allBreeds, error, randomNumber } = this.state;
+    console.log(images)
+    
     return (
       <div className="container">
         <main className="container-header">
@@ -92,6 +101,8 @@ class App extends React.Component {
           </select>
         </section>
         <section className="breeds">
+          {images.length < 10 && <p className="breeds-count"> Número de resultados: {images.length}</p>}
+          {images.length > 10 && <p className="breeds-count">Número de resultados: {randomNumber}</p>}
           <div className="breeds-container">
             {!loading && images.map(({ id, breed, image }) => (
               <div className="breeds-container__dog" key={id}>
